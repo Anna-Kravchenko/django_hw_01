@@ -9,13 +9,17 @@
 <body>
     <h1>Notes list</h1>
 
+    <p><a href="{% url 'note_create' %}">Create new note</a></p>
+
     {% for note in notes %}
         <div>
-            <h2>{{ note.title }}</h2>
+            <h2>
+                <a href="{% url 'note_detail' note.pk %}">{{ note.title }}</a>
+            </h2>
             <p>{{ note.text }}</p>
             <p>Category: {{ note.category.title }}</p>
             <p>Reminder: {{ note.reminder }}</p>
-            <br>
+            <hr>
         </div>
     {% endfor %}
 </body>

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Note details</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>{{ note.title }}</h1>
+
+    <p><strong>Text:</strong> {{ note.text }}</p>
+    <p><strong>Reminder:</strong> {{ note.reminder }}</p>
+    <p><strong>Category:</strong> {{ note.category.title }}</p>
+
+    <p>
+        <a href="{% url 'note_edit' note.pk %}">Edit</a> |
+        <a href="{% url 'note_delete' note.pk %}">Delete</a> |
+        <a href="{% url 'notes_list' %}">Back to list</a>
+    </p>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
