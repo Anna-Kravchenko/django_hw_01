@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .models import Note
+from .forms import NoteForm
 
 
 class NoteListView(ListView):
@@ -19,14 +20,16 @@ class NoteDetailView(DetailView):
 class NoteCreateView(CreateView):
     model = Note
     template_name = 'note_form.html'
-    fields = ['title', 'text', 'reminder', 'category']
+    # fields = ['title', 'text', 'reminder', 'category']
+    form_class = NoteForm
     success_url = reverse_lazy('notes_list')
 
 
 class NoteUpdateView(UpdateView):
     model = Note
     template_name = 'note_form.html'
-    fields = ['title', 'text', 'reminder', 'category']
+    # fields = ['title', 'text', 'reminder', 'category']
+    form_class = NoteForm
     success_url = reverse_lazy('notes_list')
 
 

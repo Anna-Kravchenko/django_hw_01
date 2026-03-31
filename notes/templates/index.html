@@ -1,26 +1,30 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Notes App</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <h1>Notes list</h1>
+{% extends 'base.html' %}
 
-    <p><a href="{% url 'note_create' %}">Create new note</a></p>
+{% block title %}Notes List{% endblock %}
 
+{% block content %}
+<h1 class="mb-4">Notes List</h1>
+
+{% if notes %}
+<div class="row g-4">
     {% for note in notes %}
-        <div>
-            <h2>
-                <a href="{% url 'note_detail' note.pk %}">{{ note.title }}</a>
-            </h2>
-            <p>{{ note.text }}</p>
-            <p>Category: {{ note.category.title }}</p>
-            <p>Reminder: {{ note.reminder }}</p>
-            <hr>
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ note.title }}</h5>
+                    <p class="card-text">{{ note.text }}</p>
+                    <p class="mb-1"><strong>Category:</strong> {{ note.category.title }}</p>
+                    <p class="mb-3"><strong>Reminder:</strong> {{ note.reminder }}</p>
+
+                    <a href="{% url 'note_detail' note.pk %}" class="btn btn-primary btn-sm">Details</a>
+                    <a href="{% url 'note_edit' note.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'note_delete' note.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </div>
         </div>
     {% endfor %}
-</body>
-</html>
+</div>
+{% else %}
+    <p class="text-muted">No notes yet</p>
+{% endif %}
+{% endblock %}
