@@ -4,7 +4,13 @@
 
 {% block content %}
 <h1 class="mb-4">Notes List</h1>
-
+{% if user.is_authenticated %}
+    <p>
+        <a href="{% url 'note_create' %}" class="btn btn-primary">
+            Create new note
+        </a>
+    </p>
+{% endif %}
 {% if notes %}
 <div class="row g-4">
     {% for note in notes %}

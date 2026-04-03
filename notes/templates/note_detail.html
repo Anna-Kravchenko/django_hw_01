@@ -11,8 +11,10 @@
         <p><strong>Reminder:</strong> {{ note.reminder }}</p>
         <p><strong>Category:</strong> {{ note.category.title }}</p>
 
-        <a href="{% url 'note_edit' note.pk %}" class="btn btn-warning">Edit</a>
-        <a href="{% url 'note_delete' note.pk %}" class="btn btn-danger">Delete</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'note_edit' note.pk %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'note_delete' note.pk %}" class="btn btn-danger">Delete</a>
+        {% endif %}
         <a href="{% url 'notes_list' %}" class="btn btn-secondary">Back</a>
     </div>
 </div>
